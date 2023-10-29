@@ -1,11 +1,12 @@
 import "./App.css";
-import LoginButton from "./components/Login/LoginButton.jsx";
+import GoogleLoginButton from "./components/Buttons/GoogleLoginButton.jsx";
+
 import { gapi } from "gapi-script";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-const clientId =
-  "992788890243-lvelgh74iohnglu83ft1top5mvee0una.apps.googleusercontent.com";
+
+const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 function App() {
   const [email, setEmail] = useState("");
@@ -57,7 +58,7 @@ function App() {
         >
           Login with Email
         </button>
-        <LoginButton />
+        <GoogleLoginButton />
       </div>
     </div>
   );
