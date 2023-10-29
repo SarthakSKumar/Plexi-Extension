@@ -1,67 +1,57 @@
-import "./App.css";
+import { useState, useEffect } from "react";
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 import GoogleLoginButton from "./components/Buttons/GoogleLoginButton.jsx";
-
-import { gapi } from "gapi-script";
-import { useEffect } from "react";
-import { useState } from "react";
 import axios from "axios";
 
-const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-
 function App() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState([]);
+  const [profile, setProfile] = useState([]);
+
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => setUser(codeResponse),
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
   useEffect(() => {
-    function start() {
-      gapi.client.init({
-        clientId: clientId,
-        scope: "",
-      });
+    if (user) {
+      axios
+        .get(
+          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.access_token}`,
+              Accept: "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          setProfile(res.data);
+        })
+        .catch((err) => console.log(err));
     }
-    gapi.load("client:auth2", start);
-  }, []);
-  const handleEmailLogin = async () => {
-    try {
-      // Implement email and password login logic
-      const emailPasswordResponse = await axios.post("/", { email, password });
-      console.log(emailPasswordResponse.data);
-      // Handle email and password login response here
-    } catch (error) {
-      console.error(error);
-    }
+  }, [user]);
+
+  const logOut = () => {
+    googleLogout();
+    setProfile(null);
   };
+
   return (
-    <div className="App">
-      <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-4xl mb-6">Login to Plexi</h1>
-        <div className="mb-4">
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="border rounded py-2 px-4"
-          />
+    <div>
+      {profile ? (
+        <div>
+          <img src={profile.picture} alt="user image" />
+          <h3>User Logged in</h3>
+          <p>Name: {profile.name}</p>
+          <p>Email Address: {profile.email}</p>
+          <br />
+          <br />
+          <button onClick={logOut}>Log out</button>
         </div>
-        <div className="mb-4">
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="border rounded py-2 px-4"
-          />
-        </div>
-        <button
-          onClick={handleEmailLogin}
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-4"
-        >
-          Login with Email
-        </button>
-        <GoogleLoginButton />
-      </div>
+      ) : (
+        <GoogleLoginButton loginFunction={login} />
+      )}
     </div>
   );
 }
-
 export default App;
