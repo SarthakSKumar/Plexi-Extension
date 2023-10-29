@@ -1,57 +1,59 @@
-import { useState, useEffect } from "react";
-import { googleLogout, useGoogleLogin } from "@react-oauth/google";
-import GoogleLoginButton from "./components/Buttons/GoogleLoginButton.jsx";
-import axios from "axios";
+import React from "react";
+import {
+  Router,
+  Link,
+  goBack,
+  goTo,
+  popToTop,
+} from "react-chrome-extension-router";
+import PropTypes from "prop-types";
 
-function App() {
-  const [user, setUser] = useState([]);
-  const [profile, setProfile] = useState([]);
+const Three = ({ message }) => (
+  <>
+    <h3>{message}</h3>
+    <button onClick={popToTop}>Click me to pop to the top</button>
+    <button onClick={goBack}>Click me to go back to Route Two</button>
+  </>
+);
 
-  const login = useGoogleLogin({
-    onSuccess: (codeResponse) => setUser(codeResponse),
-    onError: (error) => console.log("Login Failed:", error),
-  });
+const Two = ({ message }) => (
+  <div>
+    This is component Two. I was passed a message:
+    <p>{message}</p>
+    <button onClick={goBack}>Click me to go back to component One</button>
+    <button onClick={() => goTo(Three, { message })}>
+      Click me to go to component Three!
+    </button>
+  </div>
+);
 
-  useEffect(() => {
-    if (user) {
-      axios
-        .get(
-          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user.access_token}`,
-              Accept: "application/json",
-            },
-          }
-        )
-        .then((res) => {
-          setProfile(res.data);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [user]);
+const One = () => (
+  <Link component={Two} props={{ message: "I came from component one!" }}>
+    This is component One. Click me to route to component Two
+  </Link>
+);
 
-  const logOut = () => {
-    googleLogout();
-    setProfile(null);
-  };
+Three.propTypes = {
+  message: PropTypes.string,
+};
 
+Two.propTypes = {
+  message: PropTypes.string,
+};
+
+One.propTypes = {
+  message: PropTypes.string,
+};
+
+const App = () => {
   return (
     <div>
-      {profile ? (
-        <div>
-          <img src={profile.picture} alt="user image" />
-          <h3>User Logged in</h3>
-          <p>Name: {profile.name}</p>
-          <p>Email Address: {profile.email}</p>
-          <br />
-          <br />
-          <button onClick={logOut}>Log out</button>
-        </div>
-      ) : (
-        <GoogleLoginButton loginFunction={login} />
-      )}
+      <h1>This is your Router</h1>
+      <Router>
+        <One />
+      </Router>
     </div>
   );
-}
+};
+
 export default App;
