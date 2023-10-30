@@ -16,7 +16,8 @@
     "docker:dev": "docker-compose -f docker-compose.dev.yml up -d",
     "package:container": "docker build .",
     "compose:up": "docker-compose up -d",
-    "compose:down": "docker-compose down --volumes"
+    "compose:down": "docker-compose down --volumes",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@nestjs/common": "8.4.7",
@@ -64,6 +65,7 @@
     "supertest": "4.0.2",
     "ts-jest": "27.0.3",
     "typescript": "4.3.5",
+    "prettier": "^2.8.0",
     "@types/passport-http": "0.3.9",
     "@types/passport-jwt": "3.0.8"
   },
