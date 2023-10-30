@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-
+const dotenv = require("dotenv").config();
 const app = express();
 
 app.use(cors());
@@ -17,9 +17,15 @@ const Role = db.role;
 
 // db.sequelize.sync();
 // force: true will drop the table if it already exists
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and Resync Database with { force: true }");
-  initial();
+db.sequelize.sync({ force: false }).then(async () => {
+  const existingTables = await db.sequelize.showAllSchemas();
+  if (existingTables.length === 0) {
+    // Tables don't exist, create them and initialize
+    console.log("Creating tables and initializing data...");
+    initial();
+  } else {
+    console.log("Tables already exist, skipping initialization.");
+  }
 });
 
 // simple route
