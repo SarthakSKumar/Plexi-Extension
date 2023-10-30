@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 const GoogleLoginButton = ({ loginFunction }) => {
   return (
     <button
@@ -25,10 +23,6 @@ const GoogleLoginButton = ({ loginFunction }) => {
       Continue with Google
     </button>
   );
-};
-
-GoogleLoginButton.propTypes = {
-  loginFunction: PropTypes.func.isRequired,
 };
 
 export default GoogleLoginButton;
