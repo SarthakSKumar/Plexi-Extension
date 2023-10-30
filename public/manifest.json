@@ -3,6 +3,20 @@
   "name": "Plexi Productivity",
   "version": "0.0.1",
   "description": "An All-in-one productivity chrome extension for the modern age",
+
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Plexi Productivity"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://blank.org/*"],
+      "run_at": "document_end",
+      "js": ["./index.global.js"],
+      "css": ["./style.css"]
+    }
+  ],
   "permissions": [
     "activeTab",
     "cookies",
@@ -12,9 +26,8 @@
     "tabs",
     "identity"
   ],
-  "host_permissions": ["http://*/*", "https://*/*"],
-  "action": {
-    "default_popup": "index.html"
+  "background": {
+    "service_worker": "./background.global.js"
   },
   "icons": {
     "16": "./icons/favicon-16x16.png",

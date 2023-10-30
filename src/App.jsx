@@ -1,59 +1,126 @@
-import React from "react";
-import {
-  Router,
-  Link,
-  goBack,
-  goTo,
-  popToTop,
-} from "react-chrome-extension-router";
-import PropTypes from "prop-types";
-
-const Three = ({ message }) => (
-  <>
-    <h3>{message}</h3>
-    <button onClick={popToTop}>Click me to pop to the top</button>
-    <button onClick={goBack}>Click me to go back to Route Two</button>
-  </>
-);
-
-const Two = ({ message }) => (
-  <div>
-    This is component Two. I was passed a message:
-    <p>{message}</p>
-    <button onClick={goBack}>Click me to go back to component One</button>
-    <button onClick={() => goTo(Three, { message })}>
-      Click me to go to component Three!
-    </button>
-  </div>
-);
-
-const One = () => (
-  <Link component={Two} props={{ message: "I came from component one!" }}>
-    This is component One. Click me to route to component Two
-  </Link>
-);
-
-Three.propTypes = {
-  message: PropTypes.string,
-};
-
-Two.propTypes = {
-  message: PropTypes.string,
-};
-
-One.propTypes = {
-  message: PropTypes.string,
-};
+import browser from "webextension-polyfill";
+import { useEffect, useState } from "react";
+import SignIn from "./screens/SignIn";
 
 const App = () => {
+  const [loading, setLoading] = useState(false);
+  const [session, setSession] = useState(null);
+  const [screen, setScreen] = useState("facts");
+  const [error, setError] = useState("");
+
+  async function getSession() {
+    const {
+      data: { session },
+    } = await browser.runtime.sendMessage({ action: "getSession" });
+    setSession(session);
+  }
+
+  useEffect(() => {
+    const storedSession = localStorage.getItem("session");
+    if (storedSession) {
+      setSession(JSON.parse(storedSession));
+    } else {
+      getSession();
+    }
+  }, []);
+  async function handleOnClick() {
+    setLoading(true);
+    const { data } = await browser.runtime.sendMessage({ action: "fetch" });
+    setLoading(false);
+  }
+
+  async function handleSignUp(email, password) {
+    await browser.runtime.sendMessage({
+      action: "signup",
+      value: { email, password },
+    });
+    setScreen("signin");
+  }
+  async function handleSignIn(email, password) {
+    const { data, error } = await browser.runtime.sendMessage({
+      action: "signin",
+      value: { email, password },
+    });
+
+    if (error) {
+      setError(error.message);
+    } else {
+      // Store the session in localStorage after successful sign-in
+      localStorage.setItem("session", JSON.stringify(data.session));
+
+      // Set the session in the state
+      setSession(data.session);
+    }
+  }
+
+  async function handleSignOut() {
+    // Clear the session from storage
+    localStorage.removeItem("session");
+
+    // Call the signout action
+    const signOutResult = await browser.runtime.sendMessage({
+      action: "signout",
+    });
+
+    setScreen("signin");
+    setSession(signOutResult.data);
+  }
+
+  function renderApp() {
+    if (!session) {
+      if (screen === "signup") {
+        return (
+          <SignIn
+            onSignIn={handleSignUp}
+            title={"Sign Up"}
+            onScreenChange={() => {
+              setScreen("signin");
+              setError("");
+            }}
+            helpText={"Got an account? Sign in"}
+            error={error}
+          />
+        );
+      }
+      return (
+        <SignIn
+          title="Sign In"
+          onSignIn={handleSignIn}
+          onScreenChange={() => {
+            setScreen("signup");
+            setError("");
+          }}
+          helpText={"Create an account"}
+          error={error}
+        />
+      );
+    }
+
+    return (
+      <>
+        <button
+          className="px-4 py-2 font-semibold text-sm bg-black text-white rounded-full shadow-sm disabled:opacity-75 w-48"
+          disabled={loading}
+          onClick={handleOnClick}
+        >
+          Welcome
+        </button>
+        <div>
+          <a className="text-cyan-400" onClick={handleSignOut}>
+            Sign out
+          </a>
+        </div>
+      </>
+    );
+  }
+
   return (
-    <div>
-      <h1>This is your Router</h1>
-      <Router>
-        <One />
-      </Router>
+    <div className="">
+      <div className="flex flex-col gap-4 p-4 shadow-sm bg-black w-96 rounded-md">
+        <h1>plexi</h1>
+        {renderApp()}
+      </div>
     </div>
   );
 };
-
 export default App;
