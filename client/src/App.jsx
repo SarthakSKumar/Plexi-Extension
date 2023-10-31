@@ -114,13 +114,6 @@ const App = () => {
     );
   }
 
-  return (
-    <div className="">
-      <div className="flex flex-col gap-4 p-4 shadow-sm bg-black w-96 rounded-md">
-        <h1>plexi</h1>
-        {renderApp()}
-      </div>
-    </div>
-  );
+  return <div className="rounded-md w-96 dark">{renderApp()}</div>;
 };
 export default App;
