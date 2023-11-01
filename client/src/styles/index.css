@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.loading-button {
-  display: inline;
+body {
+  font-family: "Hanken Grotesk Variable", sans-serif;
 }
 
-.root {
-  prefers-color-scheme: dark;
+.loading-button {
+  display: inline;
 }

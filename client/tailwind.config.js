@@ -22,7 +22,7 @@ export default {
     },
     fontFamily: {
       body: [
-        "Inter",
+        "Hanken Grotesk",
         "ui-sans-serif",
         "system-ui",
         "-apple-system",
@@ -39,7 +39,7 @@ export default {
         "Noto Color Emoji",
       ],
       sans: [
-        "Inter",
+        "Hanken Grotesk",
         "ui-sans-serif",
         "system-ui",
         "-apple-system",

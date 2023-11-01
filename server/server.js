@@ -43,19 +43,27 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-function initial() {
-  Role.create({
-    id: 1,
-    name: "user",
-  });
+async function initial() {
+  const existingRoles = await Role.findAll();
+  if (existingRoles.length === 0) {
+    // Roles don't exist, create them
+    Role.create({
+      id: 1,
+      name: "user",
+    });
 
-  Role.create({
-    id: 2,
-    name: "moderator",
-  });
+    Role.create({
+      id: 2,
+      name: "moderator",
+    });
 
-  Role.create({
-    id: 3,
-    name: "admin",
-  });
+    Role.create({
+      id: 3,
+      name: "admin",
+    });
+
+    console.log("Roles created successfully.");
+  } else {
+    console.log("Roles already exist, skipping initialization.");
+  }
 }

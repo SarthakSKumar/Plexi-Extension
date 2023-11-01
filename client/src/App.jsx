@@ -1,11 +1,13 @@
+import "@fontsource-variable/hanken-grotesk";
 import browser from "webextension-polyfill";
 import { useEffect, useState } from "react";
 import SignIn from "./screens/SignIn";
+import SignUp from "./screens/SignUp";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState(null);
-  const [screen, setScreen] = useState("facts");
+  const [currentScreen, setCurrentScreen] = useState("facts");
   const [error, setError] = useState("");
 
   async function getSession() {
@@ -29,68 +31,63 @@ const App = () => {
     setLoading(false);
   }
 
-  async function handleSignUp(email, password) {
-    await browser.runtime.sendMessage({
+  async function handleSignUp(username, email, password) {
+    setError("");
+    const { data, error } = await browser.runtime.sendMessage({
       action: "signup",
-      value: { email, password },
+      value: { username, email, password },
     });
-    setScreen("signin");
+    if (error) {
+      setError(error);
+    } else {
+      setCurrentScreen("signin");
+    }
   }
-  async function handleSignIn(email, password) {
+
+  async function handleSignIn(username, password) {
     const { data, error } = await browser.runtime.sendMessage({
       action: "signin",
-      value: { email, password },
+      value: { username, password },
     });
 
     if (error) {
-      setError(error.message);
+      setError(error);
     } else {
-      // Store the session in localStorage after successful sign-in
-      localStorage.setItem("session", JSON.stringify(data.session));
-
-      // Set the session in the state
-      setSession(data.session);
+      setError("");
+      console.log(data);
+      localStorage.setItem("session", JSON.stringify(data));
+      setSession(data);
     }
   }
 
   async function handleSignOut() {
-    // Clear the session from storage
     localStorage.removeItem("session");
 
-    // Call the signout action
-    const signOutResult = await browser.runtime.sendMessage({
-      action: "signout",
-    });
-
-    setScreen("signin");
-    setSession(signOutResult.data);
+    setCurrentScreen("signin");
+    setSession("");
   }
 
   function renderApp() {
     if (!session) {
-      if (screen === "signup") {
+      if (currentScreen === "signup") {
         return (
-          <SignIn
-            onSignIn={handleSignUp}
-            title={"Sign Up"}
+          <SignUp
+            onSignUp={handleSignUp}
             onScreenChange={() => {
-              setScreen("signin");
+              setCurrentScreen("signin");
               setError("");
             }}
-            helpText={"Got an account? Sign in"}
             error={error}
           />
         );
       }
       return (
         <SignIn
-          title="Sign In"
           onSignIn={handleSignIn}
           onScreenChange={() => {
-            setScreen("signup");
+            setCurrentScreen("signup");
             setError("");
           }}
-          helpText={"Create an account"}
           error={error}
         />
       );
@@ -114,6 +111,6 @@ const App = () => {
     );
   }
 
-  return <div className="rounded-md w-96 dark">{renderApp()}</div>;
+  return <div className="w-96 min-h-96 max-h-[12rem] dark">{renderApp()}</div>;
 };
 export default App;

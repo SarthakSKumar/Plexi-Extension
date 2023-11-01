@@ -19,6 +19,7 @@
     "@auth0/auth0-react": "^2.2.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@fontsource-variable/hanken-grotesk": "^5.0.18",
     "@fontsource/inter": "^5.0.15",
     "@mui/joy": "^5.0.0-beta.12",
     "@react-oauth/google": "^0.11.1",

@@ -408,6 +408,11 @@
   resolved "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.1.6.tgz"
   integrity sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==
 
+"@fontsource-variable/hanken-grotesk@^5.0.18":
+  version "5.0.18"
+  resolved "https://registry.npmjs.org/@fontsource-variable/hanken-grotesk/-/hanken-grotesk-5.0.18.tgz"
+  integrity sha512-OT19qFoQKlm3MieZEHHOKlWbJB6hJzofyP3jGKaXNhv72TQmWefg/yoQ9kHGdS8eqmI5WmZG+37Do8xZDFfu0w==
+
 "@fontsource/inter@^5.0.15":
   version "5.0.15"
   resolved "https://registry.npmjs.org/@fontsource/inter/-/inter-5.0.15.tgz"
