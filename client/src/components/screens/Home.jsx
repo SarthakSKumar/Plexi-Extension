@@ -24,7 +24,7 @@ const Home = () => {
           <ListButton
             title="Quick Search AI"
             tagline="Search Made Smarter with AI"
-            icon="search"
+            icon="ai-search"
           />
 
           <ListButton
