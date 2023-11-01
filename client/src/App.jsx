@@ -115,6 +115,6 @@ const App = () => {
     );
   }
 
-  return <div className="w-96 min-h-96 max-h-[12rem]">{renderApp()}</div>;
+  return <div className="w-96 min-h-96 max-h-[8rem] dark">{renderApp()}</div>;
 };
 export default App;

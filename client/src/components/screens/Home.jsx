@@ -1,3 +1,5 @@
+import ListButton from "../Buttons/ListButton";
+
 const Home = () => {
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -11,14 +13,55 @@ const Home = () => {
           <span className="text-xl font-bold text-gray-900 dark:text-white">
             Plexi
           </span>
-          <img src="" />
         </div>
         <div className="w-full bg-white rounded-md shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white w-full text-center">
-              Sign in
-            </h1>
-          </div>
+          <ListButton
+            title="Bookmark Manager"
+            tagline="Your Web Favorites, Effortlessly Organized"
+            icon="bookmark"
+          />
+
+          <ListButton
+            title="Quick Search AI"
+            tagline="Search Made Smarter with AI"
+            icon="search"
+          />
+
+          <ListButton
+            title="Language Translator"
+            tagline="Translate and Connect Worldwide"
+            icon="translate"
+          />
+
+          <ListButton
+            title="Password Generator and Manager"
+            tagline="Safeguarding Your Digital Life, Simply"
+            icon="lock"
+          />
+
+          <ListButton
+            title="Quick Notes"
+            tagline="Capture Thoughts in a Flash"
+            icon="note"
+          />
+
+          <ListButton
+            title="Quick Screenshot"
+            tagline="Capture Screens in an Instant"
+            icon="screenshot"
+          />
+
+          <ListButton
+            title="Dark-Mode/Light-Mode Switching"
+            tagline="Adapt UI to Your Comfort"
+            icon="moon-sun"
+          />
+
+          <ListButton
+            title="Webpage Annotation"
+            tagline="Enhance Web Content with Annotations"
+            icon="edit"
+          />
         </div>
       </div>
     </section>
