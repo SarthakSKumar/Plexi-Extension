@@ -1,9 +1,8 @@
 import "@fontsource-variable/hanken-grotesk";
-import browser from "webextension-polyfill";
+//import browser from "webextension-polyfill";
 import { useEffect, useState } from "react";
 import SignIn from "./screens/SignIn";
 import SignUp from "./screens/SignUp";
-
 const App = () => {
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState(null);
@@ -30,6 +29,7 @@ const App = () => {
       getSession();
     }
   }, []);
+
   async function handleOnClick() {
     setLoading(true);
     const { data } = await browser.runtime.sendMessage({ action: "fetch" });
@@ -116,6 +116,6 @@ const App = () => {
     );
   }
 
-  return <div className="w-96 min-h-96 max-h-[12rem] dark">{renderApp()}</div>;
+  return <div className="w-96 min-h-96 max-h-[12rem]">{renderApp()}</div>;
 };
 export default App;

@@ -3,7 +3,7 @@ import {
   SignInHandler,
   SignUpHandler,
   SessionHandler,
-} from "./src/handlers/authHandlers.js";
+} from "./src/apis/auth.js";
 async function handleMessage({ action, value }, response) {
   if (action === "signup") {
     SignUpHandler(value, response);

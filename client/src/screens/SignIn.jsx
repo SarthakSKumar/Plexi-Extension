@@ -46,7 +46,7 @@ const SignIn = ({ onSignIn, onScreenChange, error }) => {
         </div>
         <div className="w-full bg-white rounded-md shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white w-full text-center">
+            <h1 className="text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white w-full text-center">
               Sign in
             </h1>
             <Formik
@@ -101,12 +101,14 @@ const SignIn = ({ onSignIn, onScreenChange, error }) => {
                 </button>{" "}
                 {error && (
                   <p
-                    className={"font-bold text-slate-700  dark:text-orange-600"}
+                    className={
+                      "font-bold text-orange-700  dark:text-orange-600"
+                    }
                   >
                     {error}
                   </p>
                 )}{" "}
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                <p className="text-sm font-light text-primary-950 dark:text-primary-50">
                   Dont have an account?{" "}
                   <span
                     onClick={onScreenChange}
