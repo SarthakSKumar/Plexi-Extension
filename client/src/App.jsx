@@ -19,7 +19,12 @@ const App = () => {
 
   useEffect(() => {
     const storedSession = localStorage.getItem("session");
-    if (storedSession) {
+    if (
+      storedSession &&
+      storedSession !== "undefined" &&
+      storedSession !== "null" &&
+      storedSession !== ""
+    ) {
       setSession(JSON.parse(storedSession));
     } else {
       getSession();
