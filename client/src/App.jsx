@@ -1,8 +1,12 @@
-import "@fontsource-variable/hanken-grotesk";
-//import browser from "webextension-polyfill";
 import { useEffect, useState } from "react";
-import SignIn from "./screens/SignIn";
-import SignUp from "./screens/SignUp";
+
+import SignIn from "./components/screens/SignIn";
+import SignUp from "./components/screens/SignUp";
+import Home from "./components/screens/Home";
+
+import "@fontsource-variable/hanken-grotesk";
+import browser from "webextension-polyfill";
+
 const App = () => {
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState(null);
@@ -10,9 +14,13 @@ const App = () => {
   const [error, setError] = useState("");
 
   async function getSession() {
-    const {
-      data: { session },
-    } = await browser.runtime.sendMessage({ action: "getSession" });
+    const session = await browser.runtime.sendMessage({
+      action: "getSession",
+      value: {
+        accessToken: JSON.parse(localStorage.getItem("session")).accessToken,
+      },
+    });
+    console.log(session);
     setSession(session);
   }
 
@@ -21,7 +29,7 @@ const App = () => {
     if (
       storedSession &&
       storedSession !== "undefined" &&
-      storedSession !== "null" &&
+      storedSession !== null &&
       storedSession !== ""
     ) {
       setSession(JSON.parse(storedSession));
@@ -100,17 +108,8 @@ const App = () => {
 
     return (
       <>
-        <button
-          className="px-4 py-2 font-semibold text-sm bg-black text-white rounded-full shadow-sm disabled:opacity-75 w-48"
-          disabled={loading}
-          onClick={handleOnClick}
-        >
-          Welcome
-        </button>
-        <div>
-          <a className="text-cyan-400" onClick={handleSignOut}>
-            Sign out
-          </a>
+        <div className="w-96 min-h-96 max-h-[12rem]">
+          <Home />
         </div>
       </>
     );

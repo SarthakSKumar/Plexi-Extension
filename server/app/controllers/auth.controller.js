@@ -15,6 +15,7 @@ exports.signup = (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
+    avatar: `https://ui-avatars.com/api/?name=${req.body.username}&background=9AE6B4`,
   })
     .then((user) => {
       if (req.body.roles) {
@@ -119,6 +120,6 @@ exports.session = (req, res) => {
           accessToken: token,
         });
       });
-    });fJSO
+    });
   });
 };

@@ -48,13 +48,14 @@ export async function SignInHandler(value, response) {
 
 export async function SessionHandler(value, response) {
   try {
+    console.log(value);
     const result = await fetch(
       `${import.meta.env.VITE_BACKEND_URL}/api/auth/session`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "x-access-token": value.access_token,
+          "x-access-token": value.accessToken,
         },
       }
     );
