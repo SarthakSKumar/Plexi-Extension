@@ -93,26 +93,23 @@ const App = () => {
             error={error}
           />
         );
+      } else {
+        return (
+          <SignIn
+            onSignIn={handleSignIn}
+            onScreenChange={() => {
+              setCurrentScreen("signup");
+              setError("");
+            }}
+            error={error}
+          />
+        );
       }
+    } else {
       return (
-        <SignIn
-          onSignIn={handleSignIn}
-          onScreenChange={() => {
-            setCurrentScreen("signup");
-            setError("");
-          }}
-          error={error}
-        />
+        <Home setCurrentScreen={setCurrentScreen} setSession={setSession} />
       );
     }
-
-    return (
-      <>
-        <div className="w-96 min-h-96 max-h-[12rem]">
-          <Home />
-        </div>
-      </>
-    );
   }
 
   return <div className="w-96 min-h-96 max-h-[8rem] dark">{renderApp()}</div>;
