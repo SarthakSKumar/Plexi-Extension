@@ -10,48 +10,56 @@ const Home = ({ setCurrentScreen }) => {
             title="Bookmark Manager"
             tagline="Your Web Favorites, Effortlessly Organized"
             icon="bookmark"
+            onClick={() => setCurrentScreen("bookmarks")}
           />
 
           <ListButton
             title="Quick Search AI"
             tagline="Search Made Smarter with AI"
             icon="ai-search"
+            onclick={() => setCurrentScreen("ai-search")}
           />
 
           <ListButton
             title="Language Translator"
             tagline="Translate and Connect Worldwide"
             icon="translate"
+            onClick={() => setCurrentScreen("translate")}
           />
 
           <ListButton
             title="Password Generator and Manager"
             tagline="Safeguarding Your Digital Life, Simply"
             icon="lock"
+            onClick={() => setCurrentScreen("passwords")}
           />
 
           <ListButton
             title="Quick Notes"
             tagline="Capture Thoughts in a Flash"
             icon="note"
+            onClick={() => setCurrentScreen("notes")}
           />
 
           <ListButton
             title="Quick Screenshot"
             tagline="Capture Screens in an Instant"
             icon="screenshot"
+            onClick={() => setCurrentScreen("screenshot")}
           />
 
           <ListButton
             title="Dark-Mode/Light-Mode Switching"
             tagline="Adapt UI to Your Comfort"
             icon="dark-light"
+            onClick={() => setCurrentScreen("dark-light")}
           />
 
           <ListButton
             title="Webpage Annotation"
             tagline="Enhance Web Content with Annotations"
             icon="annotate"
+            onClick={() => setCurrentScreen("annotate")}
           />
         </div>
       </div>
