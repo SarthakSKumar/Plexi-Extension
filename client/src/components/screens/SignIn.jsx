@@ -71,10 +71,8 @@ const SignIn = ({ setSession, setCurrentScreen }) => {
                 password: "",
               }}
               onSubmit={async ({ username, password }) => {
-                console.log("submitted");
                 setLoading(true);
                 await handleSignIn(username, password);
-                console.log("done");
                 setLoading(false);
               }}
             >

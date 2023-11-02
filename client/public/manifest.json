@@ -22,6 +22,7 @@
     "cookies",
     "declarativeContent",
     "scripting",
+    "bookmarks",
     "storage",
     "tabs",
     "identity"

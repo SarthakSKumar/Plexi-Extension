@@ -12,6 +12,19 @@ async function handleMessage({ action, value }, response) {
 
 // @ts-ignore
 browser.runtime.onMessage.addListener((msg, sender, response) => {
+  const bookmarkData = {
+    title: "My Bookmark",
+    url: "https://example.com",
+  };
+
+  browser.bookmarks
+    .create(bookmarkData)
+    .then((bookmark) => {
+      console.log("Bookmark created:", bookmark);
+    })
+    .catch((error) => {
+      console.error("Error creating bookmark:", error);
+    });
   handleMessage(msg, response);
   return true;
 });

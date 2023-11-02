@@ -12,10 +12,8 @@ const App = () => {
 
   useEffect(() => {
     const storedSession = JSON.parse(localStorage.getItem("session"));
-    console.log(storedSession);
     try {
       const decodedToken = jwtDecode(storedSession.accessToken);
-      console.log(decodedToken);
       if (decodedToken.exp * 1000 < Date.now()) {
         localStorage.removeItem("session");
         setCurrentScreen("signin");
