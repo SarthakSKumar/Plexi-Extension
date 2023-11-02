@@ -1,7 +1,6 @@
 import { Field, Form, Formik } from "formik";
 import { useState } from "react";
 import browser from "webextension-polyfill";
-import Cookies from "js-cookie";
 const SignIn = ({ setSession, setCurrentScreen }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
