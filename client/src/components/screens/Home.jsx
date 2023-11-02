@@ -54,13 +54,13 @@ const Home = () => {
           <ListButton
             title="Dark-Mode/Light-Mode Switching"
             tagline="Adapt UI to Your Comfort"
-            icon="moon-sun"
+            icon="dark-light"
           />
 
           <ListButton
             title="Webpage Annotation"
             tagline="Enhance Web Content with Annotations"
-            icon="edit"
+            icon="annotate"
           />
         </div>
       </div>
