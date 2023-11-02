@@ -8,19 +8,20 @@ import "@fontsource-variable/hanken-grotesk";
 
 const App = () => {
   const [session, setSession] = useState(null);
-  const [currentScreen, setCurrentScreen] = useState("signin");
+  const [currentScreen, setCurrentScreen] = useState("");
 
   useEffect(() => {
     const storedSession = JSON.parse(localStorage.getItem("session"));
     console.log(storedSession);
     try {
-      const decodedToken = jwtDecode(storedSession.access_token);
-
+      const decodedToken = jwtDecode(storedSession.accessToken);
+      console.log(decodedToken);
       if (decodedToken.exp * 1000 < Date.now()) {
         localStorage.removeItem("session");
         setCurrentScreen("signin");
       } else {
         setSession(storedSession);
+        setCurrentScreen("home");
       }
     } catch (err) {
       setSession(null);
@@ -44,9 +45,11 @@ const App = () => {
 
   return (
     <div className="w-96 min-h-96 max-h-[8rem] dark">
-      {currentScreen !== "signin" && currentScreen !== "signup" && (
-        <Header session={session} setCurrentScreen={setCurrentScreen} />
-      )}
+      {currentScreen !== "signin" &&
+        currentScreen !== "signup" &&
+        session !== null && (
+          <Header session={session} setCurrentScreen={setCurrentScreen} />
+        )}
       {renderScreen()}
     </div>
   );

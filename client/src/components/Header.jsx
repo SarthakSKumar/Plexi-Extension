@@ -9,9 +9,8 @@ export default function Header({ session, setCurrentScreen, setSession }) {
 
   async function handleSignOut() {
     localStorage.removeItem("session");
-
-    setCurrentScreen("signin");
     setSession("");
+    setCurrentScreen("signin");
   }
 
   return (
