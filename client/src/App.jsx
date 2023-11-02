@@ -1,117 +1,55 @@
 import { useEffect, useState } from "react";
-
 import SignIn from "./components/screens/SignIn";
 import SignUp from "./components/screens/SignUp";
 import Home from "./components/screens/Home";
-
+import Header from "./components/Header";
+import { jwtDecode } from "jwt-decode";
 import "@fontsource-variable/hanken-grotesk";
-import browser from "webextension-polyfill";
 
 const App = () => {
-  const [loading, setLoading] = useState(false);
   const [session, setSession] = useState(null);
-  const [currentScreen, setCurrentScreen] = useState("facts");
-  const [error, setError] = useState("");
-
-  async function getSession() {
-    const session = await browser.runtime.sendMessage({
-      action: "getSession",
-      value: {
-        accessToken: JSON.parse(localStorage.getItem("session")).accessToken,
-      },
-    });
-    console.log(session);
-    setSession(session);
-  }
+  const [currentScreen, setCurrentScreen] = useState("signin");
 
   useEffect(() => {
-    const storedSession = localStorage.getItem("session");
-    if (
-      storedSession &&
-      storedSession !== "undefined" &&
-      storedSession !== null &&
-      storedSession !== ""
-    ) {
-      setSession(JSON.parse(storedSession));
-    } else {
-      getSession();
+    const storedSession = JSON.parse(localStorage.getItem("session"));
+    console.log(storedSession);
+    try {
+      const decodedToken = jwtDecode(storedSession.access_token);
+
+      if (decodedToken.exp * 1000 < Date.now()) {
+        localStorage.removeItem("session");
+        setCurrentScreen("signin");
+      } else {
+        setSession(storedSession);
+      }
+    } catch (err) {
+      setSession(null);
+      setCurrentScreen("signin");
     }
   }, []);
 
-  async function handleOnClick() {
-    setLoading(true);
-    const { data } = await browser.runtime.sendMessage({ action: "fetch" });
-    setLoading(false);
-  }
-
-  async function handleSignUp(username, email, password) {
-    setError("");
-    const { data, error } = await browser.runtime.sendMessage({
-      action: "signup",
-      value: { username, email, password },
-    });
-    if (error) {
-      setError(error);
-    } else {
-      setCurrentScreen("signin");
-    }
-  }
-
-  async function handleSignIn(username, password) {
-    const { data, error } = await browser.runtime.sendMessage({
-      action: "signin",
-      value: { username, password },
-    });
-
-    if (error) {
-      setError(error);
-    } else {
-      setError("");
-      console.log(data);
-      localStorage.setItem("session", JSON.stringify(data));
-      setSession(data);
-    }
-  }
-
-  async function handleSignOut() {
-    localStorage.removeItem("session");
-
-    setCurrentScreen("signin");
-    setSession("");
-  }
-
-  function renderApp() {
+  function renderScreen() {
     if (!session) {
       if (currentScreen === "signup") {
-        return (
-          <SignUp
-            onSignUp={handleSignUp}
-            onScreenChange={() => {
-              setCurrentScreen("signin");
-              setError("");
-            }}
-            error={error}
-          />
-        );
+        return <SignUp setCurrentScreen={setCurrentScreen} />;
       } else {
         return (
-          <SignIn
-            onSignIn={handleSignIn}
-            onScreenChange={() => {
-              setCurrentScreen("signup");
-              setError("");
-            }}
-            error={error}
-          />
+          <SignIn setSession={setSession} setCurrentScreen={setCurrentScreen} />
         );
       }
     } else {
-      return (
-        <Home setCurrentScreen={setCurrentScreen} setSession={setSession} />
-      );
+      return <Home setCurrentScreen={setCurrentScreen} />;
     }
   }
 
-  return <div className="w-96 min-h-96 max-h-[8rem] dark">{renderApp()}</div>;
+  return (
+    <div className="w-96 min-h-96 max-h-[8rem] dark">
+      {currentScreen !== "signin" && currentScreen !== "signup" && (
+        <Header session={session} setCurrentScreen={setCurrentScreen} />
+      )}
+      {renderScreen()}
+    </div>
+  );
 };
+
 export default App;

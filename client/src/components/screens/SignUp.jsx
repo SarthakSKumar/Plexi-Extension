@@ -1,8 +1,23 @@
 import { Field, Form, Formik } from "formik";
 import { useState } from "react";
+import browser from "webextension-polyfill";
 
-const SignUp = ({ onSignUp, onScreenChange, error }) => {
+const SignUp = ({ setCurrentScreen }) => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSignUp(username, email, password) {
+    setError("");
+    const { data, error } = await browser.runtime.sendMessage({
+      action: "signup",
+      value: { username, email, password },
+    });
+    if (error) {
+      setError(error);
+    } else {
+      setCurrentScreen("signin");
+    }
+  }
 
   function renderLoadingSpinner() {
     if (!loading) return null;
@@ -57,7 +72,7 @@ const SignUp = ({ onSignUp, onScreenChange, error }) => {
               }}
               onSubmit={async ({ username, email, password }) => {
                 setLoading(true);
-                await onSignUp(username, email, password);
+                await handleSignUp(username, email, password);
                 setLoading(false);
               }}
               validate={(values) => {
@@ -143,7 +158,9 @@ const SignUp = ({ onSignUp, onScreenChange, error }) => {
                 </button>{" "}
                 {error && (
                   <p
-                    className={"font-bold text-orange-700  dark:text-orange-600"}
+                    className={
+                      "font-bold text-orange-700  dark:text-orange-600"
+                    }
                   >
                     {error}
                   </p>
@@ -151,7 +168,7 @@ const SignUp = ({ onSignUp, onScreenChange, error }) => {
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Have an account?{" "}
                   <span
-                    onClick={onScreenChange}
+                    onClick={() => setCurrentScreen("signin")}
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
                     Sign In

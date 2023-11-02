@@ -11,7 +11,7 @@ export default defineConfig({
     lib: {
       formats: ["iife"],
       entry: resolve(__dirname, "./background.js"),
-      name: "Cat Facts",
+      name: "Plexi Extension",
     },
     rollupOptions: {
       output: {

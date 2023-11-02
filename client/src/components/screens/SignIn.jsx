@@ -1,8 +1,24 @@
 import { Field, Form, Formik } from "formik";
 import { useState } from "react";
-
-const SignIn = ({ onSignIn, onScreenChange, error }) => {
+import browser from "webextension-polyfill";
+import Cookies from "js-cookie";
+const SignIn = ({ setSession, setCurrentScreen }) => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSignIn(username, password) {
+    const { data, error } = await browser.runtime.sendMessage({
+      action: "signin",
+      value: { username, password },
+    });
+    if (error) {
+      setError(error);
+    } else {
+      setError("");
+      localStorage.setItem("session", JSON.stringify(data));
+      setSession(data);
+    }
+  }
 
   function renderLoadingSpinner() {
     if (!loading) return null;
@@ -55,8 +71,10 @@ const SignIn = ({ onSignIn, onScreenChange, error }) => {
                 password: "",
               }}
               onSubmit={async ({ username, password }) => {
+                console.log("submitted");
                 setLoading(true);
-                await onSignIn(username, password);
+                await handleSignIn(username, password);
+                console.log("done");
                 setLoading(false);
               }}
             >
@@ -111,7 +129,7 @@ const SignIn = ({ onSignIn, onScreenChange, error }) => {
                 <p className="text-sm font-light text-primary-950 dark:text-primary-50">
                   Dont have an account?{" "}
                   <span
-                    onClick={onScreenChange}
+                    onClick={() => setCurrentScreen("signup")}
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
                     Sign Up
