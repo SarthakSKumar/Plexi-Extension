@@ -7,11 +7,10 @@ export default function Header({ session, setCurrentScreen, setSession }) {
     setIsDropdownVisible(!isDropdownVisible); // Toggle the dropdown visibility state
   };
 
-  async function handleSignOut() {
-    localStorage.removeItem("session");
+  const handleSignOut = () => {
     setSession("");
     setCurrentScreen("signin");
-  }
+  };
 
   return (
     <div className="w-full flex justify-between items-center bg-gray-50 dark:bg-gray-900 py-4 px-4">
@@ -29,11 +28,9 @@ export default function Header({ session, setCurrentScreen, setSession }) {
         <img
           id="avatarButton"
           type="button"
-          data-dropdown-toggle="userDropdown"
-          data-dropdown-placement="bottom-start"
           className="w-8 h-8 rounded-full cursor-pointer"
           src={`https://ui-avatars.com/api/?name=${session.username}&background=9AE6B4`}
-          alt="User dropdown"
+          alt="User Avatar"
           onClick={toggleDropdown}
         />
         <div

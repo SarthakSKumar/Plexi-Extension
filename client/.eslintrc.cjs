@@ -14,6 +14,7 @@ module.exports = {
   env: {
     browser: true,
     node: true,
+    webextensions: true,
   },
   rules: {
     "react/prop-types": "off",

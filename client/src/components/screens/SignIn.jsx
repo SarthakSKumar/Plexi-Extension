@@ -14,8 +14,8 @@ const SignIn = ({ setSession, setCurrentScreen }) => {
       setError(error);
     } else {
       setError("");
-      localStorage.setItem("session", JSON.stringify(data));
-      setSession(data);
+      setSession(data); // Update the state first
+      localStorage.setItem("session", JSON.stringify(data)); // Then set localStorage
       setCurrentScreen("home");
     }
   }

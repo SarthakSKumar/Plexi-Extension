@@ -11,8 +11,8 @@ const App = () => {
   const [currentScreen, setCurrentScreen] = useState("");
 
   useEffect(() => {
-    const storedSession = JSON.parse(localStorage.getItem("session"));
     try {
+      const storedSession = JSON.parse(localStorage.getItem("session"));
       const decodedToken = jwtDecode(storedSession.accessToken);
       if (decodedToken.exp * 1000 < Date.now()) {
         localStorage.removeItem("session");
@@ -23,12 +23,19 @@ const App = () => {
       }
     } catch (err) {
       setSession(null);
+      localStorage.removeItem("session");
       setCurrentScreen("signin");
     }
   }, []);
 
   function renderScreen() {
-    if (!session) {
+    if (
+      !session ||
+      session === null ||
+      session === "" ||
+      session === undefined ||
+      session === "undefined"
+    ) {
       if (currentScreen === "signup") {
         return <SignUp setCurrentScreen={setCurrentScreen} />;
       } else {
@@ -46,7 +53,11 @@ const App = () => {
       {currentScreen !== "signin" &&
         currentScreen !== "signup" &&
         session !== null && (
-          <Header session={session} setCurrentScreen={setCurrentScreen} />
+          <Header
+            session={session}
+            setCurrentScreen={setCurrentScreen}
+            setSession={setSession}
+          />
         )}
       {renderScreen()}
     </div>
