@@ -18,15 +18,11 @@
   "author": "bezkoder",
   "license": "ISC",
   "dependencies": {
-    "@supabase/supabase-js": "^2.38.4",
     "bcryptjs": "^2.4.3",
-    "cookie": "^0.5.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
-    "pg": "^8.11.1",
-    "pg-hstore": "^2.3.4",
     "sequelize": "^6.32.1"
   }
 }
