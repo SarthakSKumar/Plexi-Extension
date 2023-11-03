@@ -88,6 +88,7 @@ const App = () => {
         session !== null && (
           <Header
             session={session}
+            currentScreen={currentScreen}
             currentTheme={currentTheme}
             setCurrentScreen={setCurrentScreen}
             setSession={setSession}

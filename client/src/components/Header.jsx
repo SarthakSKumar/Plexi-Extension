@@ -1,11 +1,13 @@
 import { useState } from "react";
 import ThemeSwitchButton from "./Buttons/ThemeSwitchButton";
+import getScreenDetails from "../utils/getScreenDetails";
 export default function Header({
   currentTheme,
   session,
   setCurrentScreen,
   setSession,
   setCurrentTheme,
+  currentScreen,
 }) {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false); // Use state to manage dropdown visibility
 
@@ -18,6 +20,7 @@ export default function Header({
     localStorage.removeItem("session");
     setCurrentScreen("signin");
   };
+  const { screenName, screenIcon, tagline } = getScreenDetails(currentScreen);
 
   return (
     <div className="w-full flex justify-between items-center bg-gray-50 dark:bg-gray-900 pt-4 pb-3 px-4">
@@ -25,13 +28,9 @@ export default function Header({
         className="flex flex-row items-center justify-center"
         onClick={setCurrentScreen("home")}
       >
-        <img
-          className="w-8 h-8 mr-2"
-          src="./icons/android-chrome-512x512.png"
-          alt="logo"
-        />
+        <img className="w-8 h-8 mr-2" src={screenIcon} alt={screenName} />
         <span className="text-lg font-bold text-gray-900 dark:text-white">
-          Plexi
+          {screenName}
         </span>
       </div>
       <div className="flex justify-center">

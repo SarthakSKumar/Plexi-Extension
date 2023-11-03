@@ -48,7 +48,7 @@ const SignUp = ({ setCurrentScreen }) => {
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
-      <div className="flex flex-col items-center justify-center px-6 py-6 mx-auto md:h-screen lg:py-0">
+      <div className="flex flex-col items-center justify-center px-6 py-6 mx-auto">
         <div className="flex flex-row w-full items-center justify-center mb-4">
           <img
             className="w-8 h-8 mr-2"
@@ -60,8 +60,8 @@ const SignUp = ({ setCurrentScreen }) => {
           </span>
         </div>
         <div className="w-full bg-white rounded-md shadow dark:border  dark:bg-gray-800 dark:border-gray-700">
-          <div className="p-6 space-y-4 md:space-y-6">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white w-full text-center">
+          <div className="p-6 space-y-4">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white w-full text-center">
               Sign up
             </h1>
             <Formik
@@ -85,7 +85,7 @@ const SignUp = ({ setCurrentScreen }) => {
                 return errors;
               }}
             >
-              <Form className="space-y-4 md:space-y-6">
+              <Form className="space-y-4 ">
                 <div>
                   <label
                     htmlFor="username"
