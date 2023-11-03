@@ -15,6 +15,7 @@ export default function Header({
 
   const handleSignOut = () => {
     setSession("");
+    localStorage.removeItem("session");
     setCurrentScreen("signin");
   };
 

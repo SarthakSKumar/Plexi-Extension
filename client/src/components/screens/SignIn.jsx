@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import browser from "webextension-polyfill";
 const SignIn = ({ setSession, setCurrentScreen }) => {
   const [loading, setLoading] = useState(false);

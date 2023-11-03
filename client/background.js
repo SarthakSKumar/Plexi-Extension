@@ -11,34 +11,33 @@ async function handleMessage({ action, value }, response) {
   }
 }
 
-// // Get the current tab ID
 // async function getCurrentTab() {
-//   let queryOptions = { active: true, lastFocusedWindow: true };
-//   // `tab` will either be a `tabs.Tab` instance or `undefined`.
-//   let [tab] = await browser.tabs.query(queryOptions);
+//   const queryOptions = { active: true, lastFocusedWindow: true };
+//   const [tab] = await browser.tabs.query(queryOptions);
 //   return tab;
 // }
-// function getTitle() {
+
+// async function getTitle() {
 //   document.querySelector("html").style.filter = "invert(1) hue-rotate(180deg)";
 
-//   let media = document.querySelectorAll("img, video, picture, svg, iframe");
+//   const media = document.querySelectorAll("img, video, picture, svg, iframe");
 //   media.forEach((element) => {
 //     element.style.filter = "invert(1) hue-rotate(180deg)";
 //   });
 // }
 
-// @ts-ignore
 browser.runtime.onMessage.addListener((msg, sender, response) => {
-  // const tabId = await getCurrentTab(); // Get the current tab ID
-  // console.log(tabId);
-  // if (tabId !== null) {
-  //   browser.scripting
-  //     .executeScript({
-  //       target: { tabId: tabId.id },
-  //       func: getTitle, // Corrected "func" to "function"
-  //     })
-  //     .then(() => console.log("script injected"));
-  // }
+  // const tabIdPromise = getCurrentTab();
+  // tabIdPromise.then((tabId) => {
+  //   if (tabId !== null) {
+  //     browser.scripting
+  //       .executeScript({
+  //         target: { tabId: tabId.id },
+  //         func: getTitle,
+  //       })
+  //       .then(() => console.log("Script injected"));
+  //   }
+  // });
   handleMessage(msg, response);
   return true;
 });
