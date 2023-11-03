@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import SignIn from "./components/screens/SignIn";
-import SignUp from "./components/screens/SignUp";
-import Home from "./components/screens/Home";
+import SignIn from "./components/screens/SignInPage";
+import SignUp from "./components/screens/SignUpPage";
+import Home from "./components/screens/HomePage";
 
 import Header from "./components/Header";
 import BookmarkPage from "./components/screens/BookmarkPage";
