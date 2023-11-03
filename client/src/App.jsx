@@ -9,6 +9,7 @@ import "@fontsource-variable/hanken-grotesk";
 const App = () => {
   const [session, setSession] = useState(null);
   const [currentScreen, setCurrentScreen] = useState("");
+  const [currentTheme, setCurrentTheme] = useState("dark");
 
   useEffect(() => {
     try {
@@ -49,14 +50,16 @@ const App = () => {
   }
 
   return (
-    <div className="w-96 min-h-96 max-h-[8rem] dark">
+    <div className={`w-96 min-h-96 max-h-[8rem] ${currentTheme}`}>
       {currentScreen !== "signin" &&
         currentScreen !== "signup" &&
         session !== null && (
           <Header
             session={session}
+            currentTheme={currentTheme}
             setCurrentScreen={setCurrentScreen}
             setSession={setSession}
+            setCurrentTheme={setCurrentTheme}
           />
         )}
       {renderScreen()}

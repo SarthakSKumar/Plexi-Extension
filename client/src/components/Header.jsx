@@ -1,6 +1,12 @@
 import { useState } from "react";
-
-export default function Header({ session, setCurrentScreen, setSession }) {
+import ThemeSwitchButton from "./Buttons/ThemeSwitchButton";
+export default function Header({
+  currentTheme,
+  session,
+  setCurrentScreen,
+  setSession,
+  setCurrentTheme,
+}) {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false); // Use state to manage dropdown visibility
 
   const toggleDropdown = () => {
@@ -13,8 +19,11 @@ export default function Header({ session, setCurrentScreen, setSession }) {
   };
 
   return (
-    <div className="w-full flex justify-between items-center bg-gray-50 dark:bg-gray-900 py-4 px-4">
-      <div className="flex flex-row items-center justify-center">
+    <div className="w-full flex justify-between items-center bg-gray-50 dark:bg-gray-900 pt-4 pb-3 px-4">
+      <div
+        className="flex flex-row items-center justify-center"
+        onClick={setCurrentScreen("home")}
+      >
         <img
           className="w-8 h-8 mr-2"
           src="./icons/android-chrome-512x512.png"
@@ -25,6 +34,10 @@ export default function Header({ session, setCurrentScreen, setSession }) {
         </span>
       </div>
       <div className="flex justify-center">
+        <ThemeSwitchButton
+          currentTheme={currentTheme}
+          setCurrentTheme={setCurrentTheme}
+        />
         <img
           id="avatarButton"
           type="button"
@@ -35,7 +48,7 @@ export default function Header({ session, setCurrentScreen, setSession }) {
         />
         <div
           id="userDropdown"
-          className={`absolute top-[4.5rem] right-[1.5rem] z-10 ${
+          className={`absolute top-[3.5rem] right-[1.5rem] z-10 ${
             isDropdownVisible ? "" : "hidden"
           } bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600`}
         >

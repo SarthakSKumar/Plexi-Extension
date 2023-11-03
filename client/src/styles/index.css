@@ -2,8 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  transition: background-color 0.3s ease; /* Smoothly transition background color */
+}
+
 body {
   font-family: "Hanken Grotesk Variable", sans-serif;
+  transition: background-color 0.3s ease;
+}
+.theme-button {
+  transition: color 0.3s ease; /* Smoothly transition text color */
 }
 
 .loading-button {
