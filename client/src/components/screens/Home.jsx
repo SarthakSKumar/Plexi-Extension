@@ -9,59 +9,59 @@ const Home = ({ setCurrentScreen }) => {
         <Calendar />
         <div className="w-full bg-white rounded-md shadow dark:border dark:bg-gray-800 dark:border-gray-700">
           <ListButton
-            title="Bookmark Master"
+            title="Bookmark Manager"
             tagline="Web Organization with Bookmarks"
-            icon="bookmark"
-            onClick={() => setCurrentScreen("bookmarks")}
+            slug="bookmark"
+            setCurrentScreen={setCurrentScreen}
           />
 
           <ListButton
-            title="Quick Search AI"
+            title="Quick AI Search"
             tagline="Search Made Smarter with AI"
-            icon="ai-search"
-            onClick={() => setCurrentScreen("ai-search")}
+            slug="aisearch"
+            setCurrentScreen={setCurrentScreen}
           />
 
           <ListButton
-            title="Language translator"
+            title="Language Translator"
             tagline="Instant Translation, One Click!"
-            icon="translate"
-            onClick={() => setCurrentScreen("translate")}
+            slug="translate"
+            setCurrentScreen={setCurrentScreen}
           />
 
           <ListButton
-            title="Password generator and manager"
+            title="Password Manager"
             tagline="Security Simplified, Your Guardian"
-            icon="lock"
-            onClick={() => setCurrentScreen("passwords")}
+            slug="lock"
+            setCurrentScreen={setCurrentScreen}
           />
 
           <ListButton
-            title="Quick notes"
+            title="Quick Note"
             tagline="Efficient Ideas, Quick Notes!"
-            icon="note"
-            onClick={() => setCurrentScreen("notes")}
+            slug="notes"
+            setCurrentScreen={setCurrentScreen}
           />
 
           <ListButton
-            title="Quick screenshot"
+            title="Quick Screenshot"
             tagline="Capture Screens in an Instant"
-            icon="screenshot"
-            onClick={() => setCurrentScreen("screenshot")}
+            slug="screenshot"
+            setCurrentScreen={setCurrentScreen}
           />
 
           <ListButton
             title="Light/Dark Mode"
             tagline="Light or Dark, Your Choice!"
-            icon="dark-light"
-            onClick={() => setCurrentScreen("dark-light")}
+            slug="themeswitch"
+            setCurrentScreen={setCurrentScreen}
           />
 
           <ListButton
             title="Webpage Annotation"
             tagline="Enhance Web Content with Annotations"
-            icon="annotate"
-            onClick={() => setCurrentScreen("annotate")}
+            slug="annotate"
+            setCurrentScreen={setCurrentScreen}
           />
         </div>
       </div>

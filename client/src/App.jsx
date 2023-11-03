@@ -61,7 +61,7 @@ const App = () => {
           return <Home setCurrentScreen={setCurrentScreen} />;
         case "bookmarks":
           return <BookmarkPage setCurrentScreen={setCurrentScreen} />;
-        case "ai-search":
+        case "aisearch":
           return <QuickSearchPage setCurrentScreen={setCurrentScreen} />;
         case "translate":
           return <LanguageTranslatorPage setCurrentScreen={setCurrentScreen} />;
@@ -71,7 +71,7 @@ const App = () => {
           return <QuickNotesPage setCurrentScreen={setCurrentScreen} />;
         case "screenshot":
           return <QuickScreenshotPage setCurrentScreen={setCurrentScreen} />;
-        case "dark-light":
+        case "themeswitch":
           return <DarkLightModePage setCurrentScreen={setCurrentScreen} />;
         case "annotate":
           return <WebpageAnnotationPage setCurrentScreen={setCurrentScreen} />;
