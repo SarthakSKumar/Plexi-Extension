@@ -82,7 +82,7 @@ const App = () => {
   }
 
   return (
-    <div className={`w-96 min-h-96 max-h-[8rem] ${currentTheme}`}>
+    <div className={` ${currentTheme}`}>
       {currentScreen !== "signin" &&
         currentScreen !== "signup" &&
         session !== null && (

@@ -62,12 +62,12 @@ export default function Header({
             aria-labelledby="avatarButton"
           >
             <li>
-              <a
-                href="#"
+              <p
+                onClick={() => setCurrentScreen("home")}
                 className="block px-4 py-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Home
-              </a>
+              </p>
             </li>
             <li>
               <a
