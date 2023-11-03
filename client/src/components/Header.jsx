@@ -26,9 +26,13 @@ export default function Header({
     <div className="w-full flex justify-between items-center bg-gray-50 dark:bg-gray-900 pt-4 pb-3 px-4">
       <div
         className="flex flex-row items-center justify-center"
-        onClick={setCurrentScreen("home")}
+        onClick={() => setCurrentScreen("home")}
       >
-        <img className="w-8 h-8 mr-2" src={screenIcon} alt={screenName} />
+        <img
+          className="w-8 h-8 mr-2 rounded-full"
+          src={screenIcon}
+          alt={screenName}
+        />
         <span className="text-lg font-bold text-gray-900 dark:text-white">
           {screenName}
         </span>

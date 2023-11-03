@@ -7,11 +7,11 @@ const Home = ({ setCurrentScreen }) => {
     <section className="bg-gray-50 dark:bg-gray-900 pt-1 pb-4 px-4">
       <div className="flex flex-col items-center justify-center mx-auto">
         <Calendar />
-        <div className="w-full bg-white rounded-md shadow dark:border dark:bg-gray-800 dark:border-gray-700">
+        <div className="w-full py-1.5 bg-white rounded-md shadow dark:border dark:bg-gray-800 dark:border-gray-700">
           <ListButton
             title="Bookmark Manager"
             tagline="Web Organization with Bookmarks"
-            slug="bookmark"
+            slug="bookmarks"
             setCurrentScreen={setCurrentScreen}
           />
 
@@ -32,7 +32,7 @@ const Home = ({ setCurrentScreen }) => {
           <ListButton
             title="Password Manager"
             tagline="Security Simplified, Your Guardian"
-            slug="lock"
+            slug="passwords"
             setCurrentScreen={setCurrentScreen}
           />
 

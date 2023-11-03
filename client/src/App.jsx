@@ -39,6 +39,9 @@ const App = () => {
       setCurrentScreen("signin");
     }
   }, []);
+  useEffect(() => {
+    console.log(currentScreen);
+  }, [currentScreen]);
 
   function renderScreen() {
     if (

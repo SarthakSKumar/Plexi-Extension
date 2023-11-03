@@ -56,9 +56,9 @@ export default function getScreenDetails(currentScreen) {
         screenIcon: "./icons/app/themeswitch.gif",
         tagline: "Light or Dark, Your Choice!",
       };
-    case "Webpage Annotation":
+    case "annotate":
       return {
-        screenName: "Plexi",
+        screenName: "Webpage Annotation",
         screenSlug: "annotate",
         screenIcon: "./icons/app/annotate.gif",
         tagline: "Enhance Web Content with Annotations",
