@@ -1,8 +1,19 @@
 import { useEffect, useState } from "react";
+
 import SignIn from "./components/screens/SignIn";
 import SignUp from "./components/screens/SignUp";
 import Home from "./components/screens/Home";
+
 import Header from "./components/Header";
+import BookmarkPage from "./components/screens/BookmarkPage";
+import QuickSearchPage from "./components/screens/QuickSearchPage";
+import LanguageTranslatorPage from "./components/screens/LanguageTranslatorPage";
+import PasswordGeneratorPage from "./components/screens/PasswordGeneratorPage";
+import QuickNotesPage from "./components/screens/QuickNotesPage";
+import QuickScreenshotPage from "./components/screens/QuickScreenshotPage";
+import DarkLightModePage from "./components/screens/DarkLightModePage";
+import WebpageAnnotationPage from "./components/screens/WebpageAnnotationPage";
+
 import { jwtDecode } from "jwt-decode";
 import "@fontsource-variable/hanken-grotesk";
 
@@ -45,7 +56,28 @@ const App = () => {
         );
       }
     } else {
-      return <Home setCurrentScreen={setCurrentScreen} />;
+      switch (currentScreen) {
+        case "home":
+          return <Home setCurrentScreen={setCurrentScreen} />;
+        case "bookmarks":
+          return <BookmarkPage setCurrentScreen={setCurrentScreen} />;
+        case "ai-search":
+          return <QuickSearchPage setCurrentScreen={setCurrentScreen} />;
+        case "translate":
+          return <LanguageTranslatorPage setCurrentScreen={setCurrentScreen} />;
+        case "passwords":
+          return <PasswordGeneratorPage setCurrentScreen={setCurrentScreen} />;
+        case "notes":
+          return <QuickNotesPage setCurrentScreen={setCurrentScreen} />;
+        case "screenshot":
+          return <QuickScreenshotPage setCurrentScreen={setCurrentScreen} />;
+        case "dark-light":
+          return <DarkLightModePage setCurrentScreen={setCurrentScreen} />;
+        case "annotate":
+          return <WebpageAnnotationPage setCurrentScreen={setCurrentScreen} />;
+        default:
+          return <Home setCurrentScreen={setCurrentScreen} />;
+      }
     }
   }
 
