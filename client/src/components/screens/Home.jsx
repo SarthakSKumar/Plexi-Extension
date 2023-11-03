@@ -1,11 +1,13 @@
 import ListButton from "../Buttons/ListButton";
 import React from "react";
+import Calendar from "../Calendar";
 
 const Home = ({ setCurrentScreen }) => {
   return (
     <section className="bg-gray-50 dark:bg-gray-900 pt-1 pb-4 px-4">
-      <div className="flex flex-col items-center justify-center m-1 p-1 mx-auto">
-        <div className="w-full bg-white rounded-md shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+      <div className="flex flex-col items-center justify-center mx-auto">
+        <Calendar />
+        <div className="w-full bg-white rounded-md shadow dark:border dark:bg-gray-800 dark:border-gray-700">
           <ListButton
             title="Bookmark Master"
             tagline="Web Organization with Bookmarks"

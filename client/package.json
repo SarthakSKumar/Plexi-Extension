@@ -26,6 +26,7 @@
     "@supabase/supabase-js": "^2.38.4",
     "@vitejs/plugin-react": "^4.1.0",
     "axios": "^1.6.0",
+    "date-fns": "^2.30.0",
     "formik": "^2.4.5",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
