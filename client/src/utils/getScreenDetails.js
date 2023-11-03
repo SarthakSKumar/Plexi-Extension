@@ -58,10 +58,10 @@ export default function getScreenDetails(currentScreen) {
       };
     case "annotate":
       return {
-        screenName: "Webpage Annotation",
+        screenName: "Web Annotator",
         screenSlug: "annotate",
         screenIcon: "./icons/app/annotate.gif",
-        tagline: "Enhance Web Content with Annotations",
+        tagline: "Annotate Web Pages, Your Way!",
       };
     default:
       return {

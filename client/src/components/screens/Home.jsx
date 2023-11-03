@@ -58,8 +58,8 @@ const Home = ({ setCurrentScreen }) => {
           />
 
           <ListButton
-            title="Webpage Annotation"
-            tagline="Enhance Web Content with Annotations"
+            title="Web Annotator"
+            tagline="Annotate Web Pages, Your Way!"
             slug="annotate"
             setCurrentScreen={setCurrentScreen}
           />
