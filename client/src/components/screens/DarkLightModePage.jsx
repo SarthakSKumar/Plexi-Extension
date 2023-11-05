@@ -6,18 +6,23 @@ const Home = ({ setCurrentScreen }) => {
   const [blur, setBlur] = useState(0.5);
   const [contrast, setContrast] = useState(0.5);
 
-  async function enable() {
+  async function enableTheme() {
     const { data, error } = await browser.runtime.sendMessage({
       action: "toggleTheme",
-      values: { brightness, blur, contrast },
     });
   }
 
+  async function applyEffects() {
+    const { data, error } = await browser.runtime.sendMessage({
+      action: "applyEffects",
+      values: { brightness, blur, contrast },
+    });
+  }
   return (
     <section className="bg-gray-50 dark:bg-gray-900 pt-1 pb-4 px-4">
       <div className="flex flex-col items-center justify-center mx-auto">
         <div className="w-full bg-white rounded-md shadow dark:border dark:bg-gray-800 dark:border-gray-700">
-          <button onClick={() => enable()}>Click Button</button>
+          <button onClick={() => enableTheme()}>Toggle Theme</button>
           <div className="slider">
             <label>Brightness</label>
             <input
@@ -51,6 +56,7 @@ const Home = ({ setCurrentScreen }) => {
               onChange={(e) => setContrast(e.target.value)}
             />
           </div>
+          <button onClick={() => applyEffects()}>Apply Effects</button>
         </div>
       </div>
     </section>
