@@ -1,7 +1,7 @@
 export default function ListButton({ title, tagline, slug, setCurrentScreen }) {
   return (
     <button
-      className="my-1.5 px-4 space-y-4 w-full"
+      className="my-1.5 px-3 space-y-4 w-full"
       onClick={() => {
         setCurrentScreen(slug);
       }}

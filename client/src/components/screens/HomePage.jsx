@@ -4,7 +4,7 @@ import Calendar from "../Calendar";
 
 const Home = ({ setCurrentScreen }) => {
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 pt-1 pb-4 px-4">
+    <section className="bg-gray-50 dark:bg-gray-900 pt-1 pb-4 px-3">
       <div className="flex flex-col items-center justify-center mx-auto">
         <Calendar />
         <div className="w-full py-1.5 bg-white rounded-md shadow dark:border dark:bg-gray-800 dark:border-gray-700">
