@@ -72,14 +72,6 @@ export default function Header({
                 Home
               </p>
             </li>
-            <li>
-              <a
-                href="#"
-                className="block px-4 py-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Settings
-              </a>
-            </li>
           </ul>
           <div className="py-1">
             <p
