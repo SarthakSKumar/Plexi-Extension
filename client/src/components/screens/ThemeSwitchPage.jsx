@@ -28,7 +28,7 @@ const ThemeSwitchPage = ({ setCurrentScreen }) => {
         <div className="w-full py-1.5 bg-white rounded-md shadow dark:border dark:bg-gray-800 dark:border-gray-700 px-3">
           <button onClick={() => enableTheme()}>Toggle Theme</button>
           <div className="slider">
-            <div className="text-md font-semibold text-gray-900 dark:text-white mb-0.5 w-full text-left">
+            <div className="text-black dark:text-gray-100 text-start">
               Brightness
             </div>
             <input
@@ -41,12 +41,10 @@ const ThemeSwitchPage = ({ setCurrentScreen }) => {
               className="w-full h-2 mb-1 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
             />
             <div className="flex justify-between">
-              <span className="text-primary-800 dark:text-primary-300">0</span>
-              <span className="text-primary-800 dark:text-primary-100">
-                {brightness * 100}
-              </span>
+              <span className="text-primary-800 dark:text-primary-200">0</span>
+              <span>{brightness * 100}</span>
               <span className="text-primary-700 dark:text-primary-300 font-semibold">
-                200
+                250
               </span>
             </div>
           </div>
