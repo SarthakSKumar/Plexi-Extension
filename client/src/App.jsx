@@ -11,7 +11,7 @@ import LanguageTranslatorPage from "./components/screens/LanguageTranslatorPage"
 import PasswordGeneratorPage from "./components/screens/PasswordGeneratorPage";
 import QuickNotesPage from "./components/screens/QuickNotesPage";
 import QuickScreenshotPage from "./components/screens/QuickScreenshotPage";
-import DarkLightModePage from "./components/screens/DarkLightModePage";
+import ThemeSwitchPage from "./components/screens/ThemeSwitchPage";
 import WebpageAnnotationPage from "./components/screens/WebpageAnnotationPage";
 
 import { jwtDecode } from "jwt-decode";
@@ -75,7 +75,7 @@ const App = () => {
         case "screenshot":
           return <QuickScreenshotPage setCurrentScreen={setCurrentScreen} />;
         case "themeswitch":
-          return <DarkLightModePage setCurrentScreen={setCurrentScreen} />;
+          return <ThemeSwitchPage setCurrentScreen={setCurrentScreen} />;
         case "annotate":
           return <WebpageAnnotationPage setCurrentScreen={setCurrentScreen} />;
         default:

@@ -51,7 +51,7 @@ export default function getScreenDetails(currentScreen) {
       };
     case "themeswitch":
       return {
-        screenName: "Light/Dark Mode",
+        screenName: "Theme Switch",
         screenSlug: "themeswitch",
         screenIcon: "./icons/app/themeswitch.gif",
         tagline: "Light or Dark, Your Choice!",

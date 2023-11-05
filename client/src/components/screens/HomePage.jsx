@@ -51,7 +51,7 @@ const Home = ({ setCurrentScreen }) => {
           />
 
           <ListButton
-            title="Light/Dark Mode"
+            title="Theme Switch"
             tagline="Light or Dark, Your Choice!"
             slug="themeswitch"
             setCurrentScreen={setCurrentScreen}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import browser from "webextension-polyfill";
 
-const Home = ({ setCurrentScreen }) => {
+const ThemeSwitchPage = ({ setCurrentScreen }) => {
   const [brightness, setBrightness] = useState(1);
   const [blur, setBlur] = useState(0);
   const [contrast, setContrast] = useState(1);
@@ -102,4 +102,4 @@ const Home = ({ setCurrentScreen }) => {
   );
 };
 
-export default Home;
+export default ThemeSwitchPage;
