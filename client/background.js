@@ -1,7 +1,7 @@
 import browser from "webextension-polyfill";
 import { SignInHandler, SignUpHandler } from "./src/handlers/auth.js";
 import { toggleTheme, applyEffects } from "./src/handlers/themeswitch.js";
-import getCurrentTab from "./src/utils/getCurrentTabDetails.js";
+import { captureScreenshot } from "./src/handlers/quickscreenshot.js";
 
 async function handleMessage({ action, values }, response) {
   if (action === "signup") {
@@ -16,18 +16,6 @@ async function handleMessage({ action, values }, response) {
     captureScreenshot(response);
   } else {
     response({ data: null, error: "Unknown action" });
-  }
-}
-
-async function captureScreenshot(response) {
-  try {
-    const tab = await getCurrentTab();
-    const screenshotUrl = await browser.tabs.captureVisibleTab(tab.windowId, {
-      format: "jpeg",
-    });
-    response({ data: screenshotUrl, error: null });
-  } catch (error) {
-    response({ data: null, error: "Error capturing screenshot" });
   }
 }
 
