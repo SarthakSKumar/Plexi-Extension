@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { format, isToday, addDays, subDays,isLastDayOfMonth } from "date-fns";
+import { format, isToday, addDays, subDays, isLastDayOfMonth } from "date-fns";
 export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -43,7 +43,7 @@ export default function Calendar() {
               isToday(date)
                 ? "dark:bg-primary-400 bg-primary-500"
                 : "dark:hover:bg-primary-700 hover:bg-primary-200 hover:shadow-lg hover-dark-shadow"
-            } rounded-md mx-1 transition-all dursation-300 cursor-pointer justify-center w-14 ${
+            } rounded-md mx-1 transition-all duration-300 cursor-pointer justify-center w-14 ${
               isToday(date)
                 ? "text-white"
                 : "dark:text-white text-gray-900 group-hover:text-gray-100"
