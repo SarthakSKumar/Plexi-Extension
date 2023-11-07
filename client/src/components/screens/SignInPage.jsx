@@ -8,7 +8,7 @@ const SignIn = ({ setSession, setCurrentScreen }) => {
   async function handleSignIn(username, password) {
     const { data, error } = await browser.runtime.sendMessage({
       action: "signin",
-      value: { username, password },
+      values: { username, password },
     });
     if (error) {
       setError(error);

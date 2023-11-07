@@ -10,7 +10,7 @@ const SignUp = ({ setCurrentScreen }) => {
     setError("");
     const { data, error } = await browser.runtime.sendMessage({
       action: "signup",
-      value: { username, email, password },
+      values: { username, email, password },
     });
     if (error) {
       setError(error);

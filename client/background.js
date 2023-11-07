@@ -5,15 +5,15 @@ import { captureScreenshot } from "./src/handlers/quickscreenshot.js";
 
 async function handleMessage({ action, values }, response) {
   if (action === "signup") {
-    SignUpHandler(values, response);
+    await SignUpHandler(values, response);
   } else if (action === "signin") {
-    SignInHandler(values, response);
+    await SignInHandler(values, response);
   } else if (action === "toggleTheme") {
-    toggleTheme(values);
+    await toggleTheme(values);
   } else if (action === "applyEffects") {
-    applyEffects(values);
+    await applyEffects(values);
   } else if (action === "screenshot") {
-    captureScreenshot(response);
+    await captureScreenshot(response);
   } else {
     response({ data: null, error: "Unknown action" });
   }
