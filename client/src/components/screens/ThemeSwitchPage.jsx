@@ -153,7 +153,7 @@ const ThemeSwitchPage = ({ setCurrentScreen }) => {
             />
             <div className="flex justify-between text-xs text-primary-800 dark:text-primary-300">
               <span>0</span>
-              <span>{brightness * 100}</span>
+              <span>{parseInt(brightness * 100)}</span>
               <span>200</span>
             </div>
           </div>
@@ -172,7 +172,7 @@ const ThemeSwitchPage = ({ setCurrentScreen }) => {
             />
             <div className="flex justify-between text-xs text-primary-800 dark:text-primary-300">
               <span>0</span>
-              <span>{blur * 100}</span>
+              <span>{parseInt(blur * 100)}</span>
               <span>100</span>
             </div>
           </div>
@@ -191,7 +191,7 @@ const ThemeSwitchPage = ({ setCurrentScreen }) => {
             />
             <div className="flex justify-between text-xs text-primary-800 dark:text-primary-300">
               <span>0</span>
-              <span>{contrast * 100}</span>
+              <span>{parseInt(contrast * 100)}</span>
               <span>200</span>
             </div>
           </div>
