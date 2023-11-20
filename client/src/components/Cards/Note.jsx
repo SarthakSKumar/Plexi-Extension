@@ -20,7 +20,7 @@ const Note = ({
       return;
     }
 
-    setTitleError(""); // Reset the error message
+    setTitleError("");
     onSave();
   };
 
