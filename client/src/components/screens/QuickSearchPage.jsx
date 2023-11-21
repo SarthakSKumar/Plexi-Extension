@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Message from "../Cards/Message";
 import OpenAI from "openai";
+import BackButton from "../Buttons/BackButton";
 
 const openai = new OpenAI({
   apiKey: "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",
@@ -39,6 +40,7 @@ const Chat = () => {
   return (
     <div className={`max-w-md mx-auto p-4 dark:bg-gray-800 bg-white`}>
       <div className={`h-48 overflow-y-auto dark:text-white text-black`}>
+        <BackButton />
         {messages.map((message, index) => (
           <Message key={index} text={message.text} isUser={message.isUser} />
         ))}
