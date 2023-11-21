@@ -37,8 +37,9 @@ const Note = ({
       <div className="flex items-center mb-2">
         <input
           type="text"
-          className={`text-lg font-bold outline-none w-full ${isNew ? "border-b-2 border-gray-400" : "border-none"
-            } mr-8`}
+          className={`text-lg font-bold outline-none w-full ${
+            isNew ? "border-b-2 border-gray-400" : "border-none"
+          } mr-8`}
           placeholder="Title"
           value={title}
           onChange={(e) => onChange("title", e.target.value)}
