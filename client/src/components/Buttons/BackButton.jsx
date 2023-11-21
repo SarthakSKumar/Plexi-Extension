@@ -8,9 +8,9 @@ const BackButton = ({ setCurrentScreen }) => {
   return (
     <button
       onClick={handleButtonClick}
-      className="dark:bg-primary-400 bg-primary-500 text-white rounded-md p-0.5 text-sm hover:bg-primary-700 transition duration-300 pb-3 mb-2"
+      className="inline-block no-underline px-2 py-1 text-md bg-white text-black hover:bg-green-600 hover:text-white rounded-full"
     >
-      &#8249; Home
+      &#8249;
     </button>
   );
 };

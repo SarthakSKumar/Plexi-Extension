@@ -63,8 +63,8 @@ const App = () => {
           return <BookmarkPage setCurrentScreen={setCurrentScreen} />;
         case "aisearch":
           return <QuickSearchPage setCurrentScreen={setCurrentScreen} />;
-        case "translate":
-          return <LanguageTranslatorPage setCurrentScreen={setCurrentScreen} />;
+        // case "translate":
+        //   return <LanguageTranslatorPage setCurrentScreen={setCurrentScreen} />;
         case "passwords":
           return <PasswordGeneratorPage setCurrentScreen={setCurrentScreen} />;
         case "notes":
@@ -73,8 +73,8 @@ const App = () => {
           return <QuickScreenshotPage setCurrentScreen={setCurrentScreen} />;
         case "themeswitch":
           return <ThemeSwitchPage setCurrentScreen={setCurrentScreen} />;
-        case "annotate":
-          return <WebpageAnnotationPage setCurrentScreen={setCurrentScreen} />;
+        // case "annotate":
+        //   return <WebpageAnnotationPage setCurrentScreen={setCurrentScreen} />;
         default:
           return <Home setCurrentScreen={setCurrentScreen} />;
       }

@@ -22,12 +22,12 @@ const Home = ({ setCurrentScreen }) => {
             setCurrentScreen={setCurrentScreen}
           />
 
-          <ListButton
+          {/* <ListButton
             title="Language Translator"
             tagline="Instant Translation, One Click!"
             slug="translate"
             setCurrentScreen={setCurrentScreen}
-          />
+          /> */}
 
           <ListButton
             title="Password Manager"
@@ -56,13 +56,13 @@ const Home = ({ setCurrentScreen }) => {
             slug="themeswitch"
             setCurrentScreen={setCurrentScreen}
           />
-
+          {/* 
           <ListButton
             title="Web Annotator"
             tagline="Annotate Web Pages, Your Way!"
             slug="annotate"
             setCurrentScreen={setCurrentScreen}
-          />
+          /> */}
         </div>
       </div>
     </section>
